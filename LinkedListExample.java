@@ -10,6 +10,7 @@ public class LinkedListExample {
 	
 	static void reverse(){
 		System.out.println("REVERSE");
+		System.out.println("REVERSE");
 	}
 	
 	public static void main(String args[]){
