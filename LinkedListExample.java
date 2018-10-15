@@ -33,13 +33,22 @@ public class LinkedListExample {
 	
 	
 	//This method will reverse LinkedList
-	static void reverse(){
-		System.out.println("REVERSE FUNCTION");
-		while(head != null){
-			
+	static Node reverse(Node node){
+		Node prev = null;
+		Node next = null;
+		Node current = node;
+		
+		System.out.println("REVERSE FUNCTION : "+ current.data );
+		System.out.println("REVERSE FUNCTION : "+ head.data );
+		while(current != null){ System.out.println("REVERSE FUNCTION");
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
 		}
-		//Node temp = head;
-		//h
+
+		head = node = prev;
+		return head;
 		
 	}
 	
@@ -56,11 +65,10 @@ public class LinkedListExample {
 		ll.head.next.next = new Node(9);
 		ll.head.next.next.next = new Node(11);
 		ll.head.next.next.next.next = new Node(20);
-		printLL();
 		System.out.println("From Main Hello World");
-		reverse();
-		printLL();
+		ll.head = ll.reverse(ll.head);
 		
+		printLL();
 		evenOdd();
 		printLL();
 		
