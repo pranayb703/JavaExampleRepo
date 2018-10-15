@@ -60,16 +60,29 @@ public class TreesExample {
 			int rightSize = getSize(root.right);
 			return leftSize + rightSize + 1;
 		}
+		
+		public boolean isValidBST(Node root){
+			return isValidBSTUtil(root, Integer.MIN_VALUE , Integer.MAX_VALUE);
+		}
+		private boolean isValidBSTUtil(Node root , int min , int max){
+			if(root == null)
+				return true;
+			
+			if(root.data < min || root.data > max)
+				return false;
+			
+			return (isValidBSTUtil(root.left , min , root.data -1 ) && isValidBSTUtil(root.right , root.data + 1 , max));
+		}
 	
 	public static void main(String args[]){
 		TreesExample tl = new TreesExample();
-		root = new Node(10); 
-        root.left = new Node(11); 
-        root.left.left = new Node(7);
-        root.left.right = new Node(99);
-        root.right = new Node(9); 
-        root.right.left = new Node(15); 
-        root.right.right = new Node(8);
+		root = new Node(5); 
+        root.left = new Node(4); 
+        root.left.left = new Node(2);
+        root.left.right = new Node(3);
+        root.right = new Node(7); 
+        root.right.left = new Node(6); 
+        root.right.right = new Node(9);
         
         System.out.println("Inorder traversal : ");
         tl.inorder(root);
@@ -83,5 +96,9 @@ public class TreesExample {
         System.out.println();
         int s = tl.getSize(root);
         System.out.println("Size of tree  : "+s);
+        
+        System.out.println();
+        boolean isBST = tl.isValidBST(root);
+        System.out.println("Is the tree valid BST ?  : "+ isBST);
 	}
 }
